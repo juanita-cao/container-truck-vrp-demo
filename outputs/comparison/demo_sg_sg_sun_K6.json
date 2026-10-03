@@ -1,0 +1,629 @@
+{
+ "dataset": "demo_sg",
+ "instance": "sg_sun",
+ "tractors": 6,
+ "price_version": "v1",
+ "inventory_mode": "realistic",
+ "currency": "SGD",
+ "m3_budget_s": 20.0,
+ "rows": [
+  {
+   "method": "C0",
+   "cost": 3173.2,
+   "fuel": 137.6,
+   "driver": 696.0,
+   "penalty": 209.6,
+   "outsource": 1200.0,
+   "km": 213.73,
+   "unfinished": 8,
+   "penalty_min": 524,
+   "on_time_rate": 0.22727272727272727,
+   "feasible": true,
+   "runtime_s": 0.0,
+   "wait_hours": 30.4,
+   "l2": {
+    "km": 213.73,
+    "driver_minutes": 2610.0,
+    "tractors_owned": 6,
+    "tractors_used": 6,
+    "trailers_total": 6,
+    "penalty_minutes": 524,
+    "unfinished": 8
+   }
+  },
+  {
+   "method": "H0",
+   "cost": 3443.0,
+   "fuel": 507.0,
+   "driver": 536.0,
+   "penalty": 870.0,
+   "outsource": 0.0,
+   "km": 787.29,
+   "unfinished": 0,
+   "penalty_min": 2175,
+   "on_time_rate": 0.045454545454545456,
+   "feasible": true,
+   "runtime_s": 0.0,
+   "l2": {
+    "km": 787.29,
+    "driver_minutes": 2010.0,
+    "tractors_owned": 6,
+    "tractors_used": 6,
+    "trailers_total": 30,
+    "penalty_minutes": 2175,
+    "unfinished": 0
+   }
+  },
+  {
+   "method": "M1",
+   "cost": 4047.0,
+   "fuel": 452.9,
+   "driver": 497.3,
+   "penalty": 1566.8,
+   "outsource": 0.0,
+   "km": 703.28,
+   "unfinished": 0,
+   "penalty_min": 3917,
+   "on_time_rate": 0.0,
+   "feasible": true,
+   "runtime_s": 0.0,
+   "l2": {
+    "km": 703.2800000000002,
+    "driver_minutes": 1865.0,
+    "tractors_owned": 6,
+    "tractors_used": 6,
+    "trailers_total": 30,
+    "penalty_minutes": 3917,
+    "unfinished": 0
+   }
+  },
+  {
+   "method": "M0-R",
+   "cost": 3574.2,
+   "fuel": 501.8,
+   "driver": 532.8,
+   "penalty": 1009.6,
+   "outsource": 0.0,
+   "km": 779.19,
+   "unfinished": 0,
+   "penalty_min": 2524,
+   "on_time_rate": 0.045454545454545456,
+   "feasible": true,
+   "runtime_s": 0.0,
+   "l2": {
+    "km": 779.19,
+    "driver_minutes": 1997.9999999999998,
+    "tractors_owned": 6,
+    "tractors_used": 6,
+    "trailers_total": 30,
+    "penalty_minutes": 2524,
+    "unfinished": 0
+   }
+  },
+  {
+   "method": "M2",
+   "cost": 2705.2,
+   "fuel": 505.8,
+   "driver": 534.7,
+   "penalty": 134.8,
+   "outsource": 0.0,
+   "km": 785.37,
+   "unfinished": 0,
+   "penalty_min": 337,
+   "on_time_rate": 0.4090909090909091,
+   "feasible": true,
+   "runtime_s": 0.02,
+   "l2": {
+    "km": 785.3700000000001,
+    "driver_minutes": 2004.9999999999998,
+    "tractors_owned": 6,
+    "tractors_used": 4,
+    "trailers_total": 30,
+    "penalty_minutes": 337,
+    "unfinished": 0
+   }
+  }
+ ],
+ "m3_runs": [
+  {
+   "method": "M3",
+   "cost": 2668.7,
+   "fuel": 453.9,
+   "driver": 497.6,
+   "penalty": 187.2,
+   "outsource": 0.0,
+   "km": 704.81,
+   "unfinished": 0,
+   "penalty_min": 468,
+   "on_time_rate": 0.22727272727272727,
+   "feasible": true,
+   "runtime_s": 20.01,
+   "l2": {
+    "km": 704.81,
+    "driver_minutes": 1866.0,
+    "tractors_owned": 6,
+    "tractors_used": 3,
+    "trailers_total": 30,
+    "penalty_minutes": 468,
+    "unfinished": 0
+   },
+   "seed": 1,
+   "trace": [
+    [
+     0.0,
+     3574.19836
+    ],
+    [
+     0.001,
+     3516.2456799999995
+    ],
+    [
+     0.002,
+     3359.2229466666663
+    ],
+    [
+     0.002,
+     3345.5038533333336
+    ],
+    [
+     0.003,
+     3186.89504
+    ],
+    [
+     0.004,
+     2996.451786666667
+    ],
+    [
+     0.005,
+     2909.6046533333338
+    ],
+    [
+     0.006,
+     2892.014346666667
+    ],
+    [
+     0.007,
+     2844.174253333333
+    ],
+    [
+     0.008,
+     2835.2089333333333
+    ],
+    [
+     0.008,
+     2818.8310266666667
+    ],
+    [
+     0.009,
+     2803.6310266666665
+    ],
+    [
+     0.011,
+     2799.23548
+    ],
+    [
+     0.016,
+     2757.7122266666665
+    ],
+    [
+     0.025,
+     2745.1321599999997
+    ],
+    [
+     0.033,
+     2728.592386666667
+    ],
+    [
+     0.044,
+     2727.4769066666668
+    ],
+    [
+     0.056,
+     2726.2769066666665
+    ],
+    [
+     0.08,
+     2724.0342266666667
+    ],
+    [
+     0.081,
+     2716.7731733333335
+    ],
+    [
+     0.087,
+     2713.9731733333338
+    ],
+    [
+     0.359,
+     2713.731733333333
+    ],
+    [
+     0.369,
+     2711.731733333333
+    ],
+    [
+     0.397,
+     2710.07068
+    ],
+    [
+     0.455,
+     2686.4399599999997
+    ],
+    [
+     0.53,
+     2681.82536
+    ],
+    [
+     0.531,
+     2679.82536
+    ],
+    [
+     0.533,
+     2671.82536
+    ],
+    [
+     0.641,
+     2670.9643066666667
+    ],
+    [
+     1.768,
+     2669.5586933333334
+    ],
+    [
+     1.823,
+     2668.69764
+    ],
+    [
+     20.006,
+     2668.69764
+    ]
+   ]
+  },
+  {
+   "method": "M3",
+   "cost": 2672.6,
+   "fuel": 472.8,
+   "driver": 511.5,
+   "penalty": 158.4,
+   "outsource": 0.0,
+   "km": 734.1,
+   "unfinished": 0,
+   "penalty_min": 396,
+   "on_time_rate": 0.36363636363636365,
+   "feasible": true,
+   "runtime_s": 20.01,
+   "l2": {
+    "km": 734.1000000000001,
+    "driver_minutes": 1918.0,
+    "tractors_owned": 6,
+    "tractors_used": 4,
+    "trailers_total": 30,
+    "penalty_minutes": 396,
+    "unfinished": 0
+   },
+   "seed": 2,
+   "trace": [
+    [
+     0.0,
+     3574.19836
+    ],
+    [
+     0.001,
+     3482.2726666666663
+    ],
+    [
+     0.002,
+     3380.0861733333336
+    ],
+    [
+     0.002,
+     3030.3382266666667
+    ],
+    [
+     0.004,
+     2999.020253333333
+    ],
+    [
+     0.006,
+     2852.1365333333333
+    ],
+    [
+     0.008,
+     2843.42308
+    ],
+    [
+     0.009,
+     2795.09672
+    ],
+    [
+     0.014,
+     2762.2104933333335
+    ],
+    [
+     0.02,
+     2761.455426666667
+    ],
+    [
+     0.03,
+     2751.78128
+    ],
+    [
+     0.032,
+     2736.1812800000002
+    ],
+    [
+     0.036,
+     2711.6479466666665
+    ],
+    [
+     0.037,
+     2694.8479466666663
+    ],
+    [
+     0.046,
+     2679.7855466666665
+    ],
+    [
+     0.494,
+     2676.0522133333334
+    ],
+    [
+     0.499,
+     2675.8270666666667
+    ],
+    [
+     0.554,
+     2674.627066666667
+    ],
+    [
+     1.034,
+     2673.8206266666666
+    ],
+    [
+     1.795,
+     2672.627066666667
+    ],
+    [
+     20.006,
+     2672.627066666667
+    ]
+   ]
+  },
+  {
+   "method": "M3",
+   "cost": 2675.6,
+   "fuel": 454.6,
+   "driver": 498.1,
+   "penalty": 192.8,
+   "outsource": 0.0,
+   "km": 705.94,
+   "unfinished": 0,
+   "penalty_min": 482,
+   "on_time_rate": 0.22727272727272727,
+   "feasible": true,
+   "runtime_s": 20.01,
+   "l2": {
+    "km": 705.9399999999999,
+    "driver_minutes": 1868.0,
+    "tractors_owned": 6,
+    "tractors_used": 3,
+    "trailers_total": 30,
+    "penalty_minutes": 482,
+    "unfinished": 0
+   },
+   "seed": 3,
+   "trace": [
+    [
+     0.0,
+     3574.19836
+    ],
+    [
+     0.001,
+     3295.18332
+    ],
+    [
+     0.002,
+     3294.825933333333
+    ],
+    [
+     0.003,
+     3208.5452
+    ],
+    [
+     0.003,
+     3022.350426666667
+    ],
+    [
+     0.005,
+     2998.586333333333
+    ],
+    [
+     0.008,
+     2967.1196666666665
+    ],
+    [
+     0.009,
+     2920.5252666666665
+    ],
+    [
+     0.011,
+     2778.3601466666664
+    ],
+    [
+     0.012,
+     2759.180586666667
+    ],
+    [
+     0.019,
+     2744.3805866666667
+    ],
+    [
+     0.021,
+     2740.7805866666667
+    ],
+    [
+     0.024,
+     2726.1991599999997
+    ],
+    [
+     0.036,
+     2724.5991599999998
+    ],
+    [
+     0.072,
+     2723.39916
+    ],
+    [
+     0.095,
+     2722.98128
+    ],
+    [
+     0.136,
+     2722.1762933333334
+    ],
+    [
+     0.152,
+     2721.7762933333333
+    ],
+    [
+     0.217,
+     2721.3762933333337
+    ],
+    [
+     0.22,
+     2712.654373333333
+    ],
+    [
+     0.233,
+     2694.14204
+    ],
+    [
+     0.242,
+     2679.5985333333338
+    ],
+    [
+     0.287,
+     2677.1985333333337
+    ],
+    [
+     0.896,
+     2676.358693333333
+    ],
+    [
+     8.782,
+     2675.5586933333334
+    ],
+    [
+     20.007,
+     2675.5586933333334
+    ]
+   ]
+  }
+ ],
+ "min_tractors": {
+  "C0": 9,
+  "H0": 5,
+  "M0-R": 4
+ },
+ "serve_all": {
+  "C0": {
+   "method": "C0",
+   "cost": 3225.0,
+   "fuel": 245.9,
+   "driver": 1058.9,
+   "penalty": 525.2,
+   "outsource": 0.0,
+   "km": 381.83,
+   "unfinished": 0,
+   "penalty_min": 1313,
+   "on_time_rate": 0.22727272727272727,
+   "feasible": true,
+   "runtime_s": 0.0,
+   "wait_hours": 44.3,
+   "l2": {
+    "km": 381.8299999999999,
+    "driver_minutes": 3971.0,
+    "tractors_owned": 9,
+    "tractors_used": 9,
+    "trailers_total": 9,
+    "penalty_minutes": 1313,
+    "unfinished": 0
+   },
+   "tractors": 9
+  },
+  "H0": {
+   "method": "H0",
+   "cost": 3096.3,
+   "fuel": 483.1,
+   "driver": 519.2,
+   "penalty": 694.0,
+   "outsource": 0.0,
+   "km": 750.22,
+   "unfinished": 0,
+   "penalty_min": 1735,
+   "on_time_rate": 0.09090909090909091,
+   "feasible": true,
+   "runtime_s": 0.0,
+   "l2": {
+    "km": 750.22,
+    "driver_minutes": 1947.0000000000002,
+    "tractors_owned": 5,
+    "tractors_used": 5,
+    "trailers_total": 30,
+    "penalty_minutes": 1735,
+    "unfinished": 0
+   },
+   "tractors": 5
+  },
+  "M2": {
+   "method": "M2",
+   "cost": 2545.2,
+   "fuel": 475.5,
+   "driver": 513.3,
+   "penalty": 156.4,
+   "outsource": 0.0,
+   "km": 738.3,
+   "unfinished": 0,
+   "penalty_min": 391,
+   "on_time_rate": 0.45454545454545453,
+   "feasible": true,
+   "runtime_s": 0.04,
+   "l2": {
+    "km": 738.3,
+    "driver_minutes": 1925.0000000000002,
+    "tractors_owned": 5,
+    "tractors_used": 4,
+    "trailers_total": 30,
+    "penalty_minutes": 391,
+    "unfinished": 0
+   },
+   "tractors": 5
+  },
+  "M3": {
+   "method": "M3",
+   "cost": 2542.6,
+   "fuel": 472.8,
+   "driver": 511.5,
+   "penalty": 158.4,
+   "outsource": 0.0,
+   "km": 734.1,
+   "unfinished": 0,
+   "penalty_min": 396,
+   "on_time_rate": 0.36363636363636365,
+   "feasible": true,
+   "runtime_s": 20.01,
+   "l2": {
+    "km": 734.1000000000001,
+    "driver_minutes": 1918.0,
+    "tractors_owned": 5,
+    "tractors_used": 4,
+    "trailers_total": 30,
+    "penalty_minutes": 396,
+    "unfinished": 0
+   },
+   "tractors": 5
+  }
+ },
+ "m3_cost_mean": 2672.3,
+ "m3_cost_std": 2.8
+}

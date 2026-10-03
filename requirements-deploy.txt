@@ -1,0 +1,6 @@
+# 线上后端（Render）运行依赖；开发/测试依赖见 requirements.txt
+numpy
+fastapi
+uvicorn
+pydantic>=2
+ortools==9.12.4544

@@ -1,0 +1,8 @@
+numpy
+pytest
+fastapi
+uvicorn
+pydantic>=2
+simpy
+# ortools 必须固定在 9.12.x：9.15 会把共用环境的 protobuf 升到 6.x，与环境里 streamlit 1.38（要求 protobuf<6）冲突
+ortools==9.12.4544

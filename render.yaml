@@ -1,0 +1,36 @@
+# Render Blueprint：后端 Web Service + 前端 Static Site。域名在 Cloudflare 里 CNAME 到 Render 给的地址。
+services:
+  - type: web
+    name: drayage-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements-deploy.txt
+    startCommand: uvicorn backend.api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: CORS_ORIGINS
+        value: https://drayage.innerdrivestudio.com
+      - key: DATASET
+        value: demo_sg
+      # 公开页面无密码：限制并发与单次求解时长，防止被刷 CPU
+      - key: MAX_CONCURRENT_JOBS
+        value: "1"
+      - key: MAX_BUDGET_S
+        value: "60"
+      - key: DEFAULT_BUDGET_S
+        value: "20"
+  - type: web
+    name: drayage-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE
+        value: https://drayage-api.innerdrivestudio.com/api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

@@ -1,0 +1,19 @@
+body { margin: 0; font-family: Inter, "Noto Sans SC", -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+.brand { height: 52px; display: flex; align-items: center; gap: 10px; padding: 0 14px; font-weight: 600; white-space: nowrap; overflow: hidden; }
+.collapse-btn { position: absolute; bottom: 8px; left: 8px; }
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; background: var(--color-bg-2); border-bottom: 1px solid var(--color-border-2); height: auto; min-height: 52px; gap: 8px; flex-wrap: wrap; }
+.content { padding: 16px 20px; background: var(--color-fill-1); }
+.statusbar { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 6px 16px; font-size: 12px; color: var(--color-text-3); background: var(--color-bg-2); border-top: 1px solid var(--color-border-2); }
+.login { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-fill-2); }
+.page-title { margin: 0 0 4px 0; }
+.good { color: rgb(var(--green-6)); font-weight: 600; }
+.bad { color: rgb(var(--red-6)); font-weight: 600; }
+.kpi-grid .arco-statistic-title { white-space: normal; }
+.method-card { height: 100%; }
+.method-card h4 { margin: 0 0 6px 0; }
+.method-card p { margin: 0 0 8px 0; }
+.replay-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 12px; }
+@media (max-width: 1100px) { .replay-wrap { grid-template-columns: 1fr; } }
+.row-error td { background: rgba(245, 63, 63, 0.08) !important; }
+.legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+.event-log { max-height: 220px; overflow: auto; font-size: 12px; line-height: 1.7; }

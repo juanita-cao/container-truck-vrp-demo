@@ -1,0 +1,11 @@
+._*
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+frontend/dist/
+.env
+data/roads/
+outputs/runs/
+data/price_tables/
