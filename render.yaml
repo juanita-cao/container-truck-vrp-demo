@@ -12,7 +12,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.9
       - key: CORS_ORIGINS
-        value: https://drayage.innerdrivestudio.com
+        value: https://drayage-demo.innerdrivestudio.com
       - key: DATASET
         value: demo_sg
       # 公开页面无密码：限制并发与单次求解时长，防止被刷 CPU
