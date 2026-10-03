@@ -11,7 +11,7 @@ export const zh: DeepStrings<Resource> = {
     perDay: "每天", perYear: "每年", noData: "暂无数据", dataBy: "地图数据 © OpenStreetMap contributors",
     fictionalBanner: "演示环境：公司、客户与价格均为虚构。", rights: "版权所有",
   },
-  nav: { guide: "用户指南", input: "订单与车队", week: "一周总览", compare: "甩挂价值对比", plan: "排程", replay: "网络回放", price: "单价表", collapse: "收起", expand: "展开" },
+  nav: { guide: "用户指南", input: "订单与车队", week: "一周总览", compare: "甩挂价值对比", plan: "排程", replay: "网络回放", price: "单价表", collapse: "收起", menu: "菜单", expand: "展开" },
   header: { instance: "日期 / 算例", dataset: "数据集", language: "语言", account: "账号", switchCompany: "切换公司", logout: "退出" },
   login: {
     title: "甩挂运输排程", subtitle: "轴辐式网络下的集装箱甩挂运输调度",
@@ -133,10 +133,11 @@ export const zh: DeepStrings<Resource> = {
     openReplay: "在网络上观看", costBreakdown: "成本构成", fuel: "燃油", driver: "司机工时", fixed: "车辆固定成本", outsource: "外包", penalty: "早到/迟到折算",
     feasible: "已通过独立校验器检查：可行", violations: "校验器发现了问题", noInstance: "请先在顶栏选择日期。",
     recent: "最近的计划",
+    recorded: "现成的计划（直接打开）", recordedNow: "立即排程 · 回放", recordedTomorrow: "明日排程 · 回放",
   },
   replay: {
     title: "网络回放", subtitle: "卡车沿真实道路行驶；每个数字都来自已校验的计划",
-    source: "计划", noRun: "还没有可回放的计划，请先在\"排程\"页生成一份。", goPlan: "去排程",
+    recorded: "已录制", source: "计划", noRun: "还没有可回放的计划，请先在\"排程\"页生成一份。", goPlan: "去排程",
     clock: "时钟", play: "播放", pause: "暂停", restart: "重新开始", nextEvent: "下一个事件", speed: "速度", speedUnit: "仿真分钟/秒",
     counters: "实时计数", done: "已完成任务", late: "目前迟到", early: "目前早到", km: "已行驶里程", onRoad: "行驶中的车", dwelling: "装卸中的车",
     inventory: "挂车场的挂车数", eventLog: "事件日志", gantt: "各车时间线", legend: "图例",

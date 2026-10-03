@@ -7,7 +7,7 @@ export function Gantt({ tr, t, selected, onSelect, horizon }: { tr: Trajectory; 
   const rowH = 14, left = 34, W = 1000, H = tr.tractors.length * rowH + 16;
   const X = (m: number) => left + (m / horizon) * (W - left - 6);
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", display: "block" }} role="img">
+    <div className="scroll-x"><svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", minWidth: 720, display: "block" }} role="img">
       {[0, 120, 240, 360, 480, 600, 720].filter((m) => m <= horizon).map((m) => (
         <g key={m}><line x1={X(m)} x2={X(m)} y1={0} y2={H - 14} stroke="#e5e6eb" /><text x={X(m)} y={H - 3} fontSize="10" textAnchor="middle" fill="#86909c">{String(8 + m / 60).padStart(2, "0")}:00</text></g>
       ))}
@@ -21,6 +21,6 @@ export function Gantt({ tr, t, selected, onSelect, horizon }: { tr: Trajectory; 
         </g>
       ))}
       <line x1={X(t)} x2={X(t)} y1={0} y2={H - 14} stroke="#f53f3f" strokeWidth={1.5} />
-    </svg>
+    </svg></div>
   );
 }

@@ -22,6 +22,7 @@ from ..verifier import verify
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 RUNS = Path(os.environ.get("OUTPUT_DIR", ROOT / "outputs")) / "runs"
+RECORDED = ROOT / "data" / "recorded_runs"      # 预先录好的演示运行（随仓库提交；线上重启后仍在，打开即可回放）
 MAX_JOBS = int(os.environ.get("MAX_CONCURRENT_JOBS", "2"))
 DEFAULT_BUDGET = float(os.environ.get("DEFAULT_BUDGET_S", "60"))
 MAX_BUDGET = float(os.environ.get("MAX_BUDGET_S", "600"))
@@ -170,11 +171,26 @@ def get_compare_job(cid: str) -> Optional[dict]:
 def get_job(run_id: str) -> Optional[dict]:
     if run_id in _jobs:
         return _jobs[run_id]
-    p = RUNS / run_id / "run.json"
-    if p.exists():
-        rec = json.loads(p.read_text(encoding="utf-8"))
-        return {"status": rec["status"], "record": rec}
+    for base in (RUNS, RECORDED):
+        p = base / run_id / "run.json"
+        if p.exists():
+            rec = json.loads(p.read_text(encoding="utf-8"))
+            return {"status": rec["status"], "record": rec}
     return None
+
+
+def list_recorded(dataset: Optional[str] = None) -> list:
+    """预录运行的摘要列表（不含 plan）。"""
+    out = []
+    for p in sorted(RECORDED.glob("*/run.json")) if RECORDED.exists() else []:
+        if p.parent.name.startswith("._"):
+            continue
+        r = json.loads(p.read_text(encoding="utf-8"))
+        if dataset and r.get("dataset") != dataset:
+            continue
+        out.append({"run_id": r["run_id"], "instance": r["instance"], "dataset": r["dataset"], "method": r["method"],
+                    "mode": r.get("mode"), "runtime_s": r.get("runtime_s"), "recorded": True})
+    return out
 
 
 def cancel(run_id: str) -> bool:

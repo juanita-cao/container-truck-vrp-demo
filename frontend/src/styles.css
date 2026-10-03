@@ -17,3 +17,19 @@ body { margin: 0; font-family: Inter, "Noto Sans SC", -apple-system, "Segoe UI",
 .row-error td { background: rgba(245, 63, 63, 0.08) !important; }
 .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
 .event-log { max-height: 220px; overflow: auto; font-size: 12px; line-height: 1.7; }
+
+.brand-inline { display: inline-flex; align-items: center; gap: 8px; }
+/* 手机（<768px）：紧凑内边距，页脚上下排，图表与表格不撑破页面 */
+@media (max-width: 767px) {
+  .content { padding: 10px; }
+  .topbar { padding: 6px 10px; }
+  .statusbar { flex-direction: column; gap: 4px; padding: 6px 10px; }
+  .arco-card-body { padding: 10px !important; }
+  .arco-statistic-value { font-size: 20px !important; }
+  .event-log { max-height: 160px; }
+  .arco-table-container { overflow-x: auto; }
+  .arco-typography h3 { font-size: 18px; }
+}
+.scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.content .arco-typography, .content p, .content h3 { word-break: normal !important; overflow-wrap: break-word; }
+@media (max-width: 767px) { .topbar { flex-wrap: nowrap; } }

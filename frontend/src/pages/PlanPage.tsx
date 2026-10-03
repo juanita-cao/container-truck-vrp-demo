@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { ApiError, get, http, type CompareResp, type RunRecord } from "../api/client";
+import { ApiError, get, http, type CompareResp, type RecordedRun, type RunRecord } from "../api/client";
 import { ErrorNote } from "../components/ErrorNote";
 import { delta, money, num, pct } from "../lib/format";
 import { usePrefs } from "../state/prefs";
@@ -11,6 +11,22 @@ import { usePrefs } from "../state/prefs";
 const { Row, Col } = Grid;
 const BUDGETS = [10, 60, 300];
 const METHODS = ["M0-R", "M1", "M2", "M3", "H0"];
+
+function RecordedPlans() {
+  const { t } = useTranslation();
+  const p = usePrefs();
+  const nav = useNavigate();
+  const q = useQuery({ queryKey: ["recorded", p.dataset], queryFn: () => get<RecordedRun[]>("/recorded-runs", { dataset: p.dataset }) });
+  const mine = q.data?.filter((r) => r.instance === p.instance) ?? [];
+  if (!mine.length) return null;
+  return (
+    <Card size="small" title={t("plan.recorded")}>
+      <Space wrap>
+        {mine.map((r) => <Tag key={r.run_id} color="green" style={{ cursor: "pointer" }} onClick={() => nav(`/replay?run=${r.run_id}`)}>{t(r.mode === "tomorrow" ? "plan.recordedTomorrow" : "plan.recordedNow")}</Tag>)}
+      </Space>
+    </Card>
+  );
+}
 
 export function PlanPage() {
   const { t } = useTranslation();
@@ -125,7 +141,7 @@ export function PlanPage() {
                 { label: t("plan.tractorsUsed"), value: `${run.verified.tractors_used} / ${run.tractors}` },
                 { label: t("compare.runtime"), value: `${num(run.runtime_s, lang, 1)} ${t("common.seconds")}` },
               ]} />
-              <Table size="small" pagination={false} rowKey="k" columns={[{ title: t("plan.costBreakdown"), dataIndex: "label" }, { title: "", dataIndex: "v", align: "right" }]} data={[
+              <Table size="small" pagination={false} scroll={{ x: 420 }} rowKey="k" columns={[{ title: t("plan.costBreakdown"), dataIndex: "label" }, { title: "", dataIndex: "v", align: "right" }]} data={[
                 { k: "fuel", label: t("plan.fuel"), v: money(run.cost.fuel, cur, lang) }, { k: "driver", label: t("plan.driver"), v: money(run.cost.driver, cur, lang) },
                 { k: "fixed", label: t("plan.fixed"), v: money(run.cost.tractor_fixed + run.cost.trailer_fixed, cur, lang) },
                 { k: "outsource", label: t("plan.outsource"), v: money(run.cost.outsource, cur, lang) }, { k: "penalty", label: t("plan.penalty"), v: money(run.cost.penalty, cur, lang) },
@@ -138,6 +154,7 @@ export function PlanPage() {
           )}
         </Card>
       )}
+      <RecordedPlans />
       {p.recent.length > 0 && (
         <Card size="small" title={t("plan.recent")}>
           <Space wrap>{p.recent.slice(0, 8).map((r) => <Tag key={r.run_id} style={{ cursor: "pointer" }} onClick={() => nav(`/replay?run=${r.run_id}`)}>{r.instance} · {r.method}</Tag>)}</Space>

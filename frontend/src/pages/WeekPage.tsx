@@ -66,7 +66,7 @@ export function WeekPage() {
               ))}
             </div>
             <Card title={t("week.weekTotal")}>
-              <Table pagination={false} size="small" rowKey="m" columns={[
+              <Table pagination={false} size="small" scroll={{ x: 520 }} rowKey="m" columns={[
                 { title: "", dataIndex: "label" },
                 { title: t("week.dayCost"), dataIndex: "cost", align: "right" },
                 { title: t("compare.vsTraditional"), dataIndex: "vs", align: "right" },

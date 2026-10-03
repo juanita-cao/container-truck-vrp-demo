@@ -7,6 +7,7 @@ import { ApiError, get, http, type CompareColumn, type CompareResp, type Instanc
 import { EChart } from "../components/EChart";
 import { ErrorNote } from "../components/ErrorNote";
 import { delta, money, num, pct } from "../lib/format";
+import { useNarrow } from "../lib/useNarrow";
 import { usePrefs } from "../state/prefs";
 
 const { Row, Col } = Grid;
@@ -19,6 +20,8 @@ const COLS = [
 ] as const;
 
 export function ComparePage() {
+  const narrow = useNarrow(768);
+  const axisLabel = narrow ? { interval: 0, width: 72, overflow: "break" as const, fontSize: 10 } : { interval: 0 };   // 手机上图表分类名折行，避免互相重叠
   const { t } = useTranslation();
   const p = usePrefs();
   const nav = useNavigate();
@@ -53,7 +56,7 @@ export function ComparePage() {
 
   const story = useMemo(() => ({
     tooltip: { trigger: "axis" as const }, grid: { left: 70, right: 20, top: 24, bottom: 36 },
-    xAxis: { type: "category" as const, data: COLS.map((c) => t(`compare.${c.title}`)), axisLabel: { interval: 0 } },
+    xAxis: { type: "category" as const, data: COLS.map((c) => t(`compare.${c.title}`)), axisLabel },
     yAxis: { type: "value" as const },
     series: [{ type: "bar" as const, barMaxWidth: 70, data: COLS.map((c) => ({ value: Math.round(find(c.key)?.cost ?? 0), itemStyle: { color: c.color } })),
       label: { show: true, position: "top" as const, formatter: (x: { value?: unknown }) => money(Number(x.value ?? 0), cur, lang) } }],
@@ -63,7 +66,7 @@ export function ComparePage() {
     const m = q.data?.min_tractors;
     return {
       tooltip: { trigger: "axis" as const }, grid: { left: 40, right: 20, top: 16, bottom: 36 },
-      xAxis: { type: "category" as const, data: [t("compare.fleetTraditional"), t("compare.fleetDropPull"), t("compare.fleetStandard")], axisLabel: { interval: 0 } },
+      xAxis: { type: "category" as const, data: [t("compare.fleetTraditional"), t("compare.fleetDropPull"), t("compare.fleetStandard")], axisLabel },
       yAxis: { type: "value" as const },
       series: [{ type: "bar" as const, barMaxWidth: 60, label: { show: true, position: "top" as const },
         data: [{ value: m?.C0 ?? 0, itemStyle: { color: "#f53f3f" } }, { value: m?.H0 ?? 0, itemStyle: { color: "#86909c" } }, { value: m?.["M0-R"] ?? 0, itemStyle: { color: "#165dff" } }] }],
@@ -74,7 +77,7 @@ export function ComparePage() {
     const sa = q.data?.serve_all ?? [];
     return {
       tooltip: { trigger: "axis" as const }, grid: { left: 70, right: 20, top: 28, bottom: 52 },
-      xAxis: { type: "category" as const, axisLabel: { interval: 0 },
+      xAxis: { type: "category" as const, axisLabel,
         data: sa.map((x) => `${t(`compare.${COLS.find((c) => c.key === x.method)!.title}`)}\n${x.tractors} ${t("compare.trucks")}`) },
       yAxis: { type: "value" as const },
       series: [{ type: "bar" as const, barMaxWidth: 70, data: sa.map((x) => ({ value: Math.round(x.cost), itemStyle: { color: COLS.find((c) => c.key === x.method)!.color } })),
@@ -212,7 +215,7 @@ export function ComparePage() {
               </Row>
             </Collapse.Item>
             <Collapse.Item header={t("compare.moreMethods")} name="adv">
-              <Table size="small" pagination={false} rowKey="method" columns={[
+              <Table size="small" pagination={false} scroll={{ x: 560 }} rowKey="method" columns={[
                 { title: "", dataIndex: "name" }, { title: t("compare.dailyCost"), dataIndex: "cost", align: "right" },
                 { title: t("compare.vsTraditional"), dataIndex: "vs", align: "right" }, { title: t("compare.km"), dataIndex: "km", align: "right" },
                 { title: t("compare.hitRate"), dataIndex: "hit", align: "right" }, { title: "", dataIndex: "desc" },
@@ -225,7 +228,7 @@ export function ComparePage() {
               <Card size="small" title={t("compare.exact")} style={{ marginTop: 12 }}>
                 <p>{t("compare.exactDesc")}</p>
                 <Typography.Text type="secondary">{t("compare.scalingTitle")}</Typography.Text>
-                <Table size="small" pagination={false} rowKey="n" columns={[
+                <Table size="small" pagination={false} scroll={{ x: 480 }} rowKey="n" columns={[
                   { title: t("compare.tasks"), dataIndex: "n" },
                   {
                     title: t("compare.exactTime"), dataIndex: "res",

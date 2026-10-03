@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { get, type RunRecord } from "../api/client";
+import { useNarrow } from "../lib/useNarrow";
+import { get, type RecordedRun, type RunRecord } from "../api/client";
 import { Gantt } from "../components/Gantt";
 import { ErrorNote } from "../components/ErrorNote";
 import { colorOf, ReplayCanvas } from "../components/ReplayCanvas";
@@ -19,8 +20,13 @@ export function ReplayPage() {
   const p = usePrefs();
   const nav = useNavigate();
   const [sp] = useSearchParams();
-  const runId = sp.get("run") ?? p.recent[0]?.run_id ?? null;
+  // 没有指定运行时：最近一次现场运行 → 否则用预先录好的（当前算例的"明日排程"优先）
+  const rec = useQuery({ queryKey: ["recorded", p.dataset], queryFn: () => get<RecordedRun[]>("/recorded-runs", { dataset: p.dataset }) });
+  const recorded = rec.data?.filter((r) => r.instance === p.instance) ?? [];
+  const fallback = (recorded.find((r) => r.mode === "tomorrow") ?? recorded[0])?.run_id ?? null;
+  const runId = sp.get("run") ?? p.recent.find((r) => r.instance === p.instance)?.run_id ?? fallback;
   const lang = p.lang;
+  const narrowScreen = useNarrow(768);
 
   const run = useQuery({ queryKey: ["run", runId], enabled: !!runId, queryFn: () => get<RunRecord>(`/runs/${runId}`) });
   const trq = useQuery({ queryKey: ["traj", runId], enabled: !!runId && run.isSuccess, queryFn: () => get<Trajectory>(`/runs/${runId}/trajectory`) });
@@ -90,7 +96,7 @@ export function ReplayPage() {
         <>
           <Card size="small">
             <Space size="large" wrap style={{ width: "100%" }}>
-              <span>{t("replay.source")}: <Tag>{run.data.instance}</Tag><Tag color="arcoblue">{run.data.method}</Tag></span>
+              <span>{t("replay.source")}: <Tag>{run.data.instance}</Tag><Tag color="arcoblue">{run.data.method}</Tag>{run.data.recorded && <Tag color="green">{t("replay.recorded")}</Tag>}</span>
               <span style={{ fontSize: 26, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>{clock(tNow)}</span>
               <Space>
                 <Button type="primary" shape="circle" icon={playing ? <IconPause /> : <IconPlayArrow />} aria-label={playing ? t("replay.pause") : t("replay.play")}
@@ -114,7 +120,7 @@ export function ReplayPage() {
           <div className="replay-wrap">
             <Card bodyStyle={{ padding: 8 }}>
               <ReplayCanvas tr={tr} t={tNow} pos={pos} inventory={inv} selected={focus} showRoutes={showRoutes} showTrail={showTrail}
-                nodeState={nodeState} pending={pending} attribution={geo ? t("common.dataBy") : undefined} zoomToTractors={focus !== null} />
+                nodeState={nodeState} pending={pending} attribution={geo ? t("common.dataBy") : undefined} zoomToTractors={focus !== null} height={narrowScreen ? 340 : 520} />
               <Space wrap size="medium" style={{ marginTop: 8, fontSize: 12 }}>
                 {(["none", "empty_trailer", "loaded", "empty_container"] as const).map((k) => <span key={k}><span className="legend-dot" style={{ background: { none: "#c9cdd4", empty_trailer: "#bedaff", loaded: "#165dff", empty_container: "#14c9c9" }[k] }} />{t(`replay.trailer.${k}`)}</span>)}
                 <span>■ {t("replay.node.dc")}</span><span style={{ color: "#722ed1" }}>◆ {t("replay.node.tc")}</span><span>● {t("replay.node.client")}</span>

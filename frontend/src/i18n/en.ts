@@ -7,7 +7,7 @@ export const en = {
     perDay: "per day", perYear: "per year", noData: "No data yet", dataBy: "Map data © OpenStreetMap contributors",
     fictionalBanner: "Demo environment: the company, customers and prices are fictional.", rights: "All rights reserved",
   },
-  nav: { guide: "User guide", input: "Orders & fleet", week: "Week overview", compare: "Drop-and-pull value", plan: "Plan", replay: "Network replay", price: "Unit prices", collapse: "Collapse", expand: "Expand" },
+  nav: { guide: "User guide", input: "Orders & fleet", week: "Week overview", compare: "Drop-and-pull value", plan: "Plan", replay: "Network replay", price: "Unit prices", collapse: "Collapse", menu: "Menu", expand: "Expand" },
   header: { instance: "Day / instance", dataset: "Dataset", language: "Language", account: "Account", switchCompany: "Switch company", logout: "Sign out" },
   login: {
     title: "Drayage Planner", subtitle: "Container trucking dispatch with a hub-and-spoke network",
@@ -129,10 +129,11 @@ export const en = {
     openReplay: "Watch on the network", costBreakdown: "Cost breakdown", fuel: "Fuel", driver: "Driver hours", fixed: "Fixed vehicle cost", outsource: "Outsourcing", penalty: "Early/late penalty",
     feasible: "Checked by the independent verifier: feasible", violations: "The verifier found problems", noInstance: "Choose a day in the top bar first.",
     recent: "Recent plans",
+    recorded: "Ready-made plans (open instantly)", recordedNow: "Plan now · replay", recordedTomorrow: "Plan for tomorrow · replay",
   },
   replay: {
     title: "Network replay", subtitle: "Trucks follow real roads; every number comes from the verified plan",
-    source: "Plan", noRun: "No plan to replay yet. Create one on the Plan page.", goPlan: "Go to Plan",
+    recorded: "Recorded", source: "Plan", noRun: "No plan to replay yet. Create one on the Plan page.", goPlan: "Go to Plan",
     clock: "Clock", play: "Play", pause: "Pause", restart: "Restart", nextEvent: "Next event", speed: "Speed", speedUnit: "sim-min per second",
     counters: "Live counters", done: "Tasks done", late: "Late so far", early: "Early so far", km: "Distance so far", onRoad: "Trucks moving", dwelling: "Trucks loading",
     inventory: "Trailers at yards", eventLog: "Event log", gantt: "Timeline by tractor", legend: "Legend",

@@ -24,11 +24,13 @@ export interface InstanceSummary {
 }
 export interface Cost { fuel: number; driver: number; tractor_fixed: number; trailer_fixed: number; outsource: number; penalty: number; total: number;
   drivers: { km: number; driver_hours: number; tractors_owned: number; tractors_used: number; trailers_total: number; penalty_minutes: number; unfinished: number } }
+export interface RecordedRun { run_id: string; instance: string; dataset: string; method: string; mode: string | null; runtime_s: number | null; recorded: true }
 export interface RunRecord {
   run_id: string; status: string; method: string; dataset: string; instance: string; mode?: string | null; inventory_mode: string; tractors: number;
   runtime_s: number; totals: { unfinished: number; mileage_km: number; early_penalty: number; late_penalty: number; total_penalty: number };
   l2: Record<string, number>; cost: Cost; currency: string; price_version: string; trace?: [number, number][] | null;
   verified: { feasible: boolean; violations: { code: string; detail: string }[]; on_time_rate: number | null; tractors_used: number };
+  recorded?: boolean;
   progress?: { elapsed_s: number; best_cost: number; iterations: number }; error?: { code: string; detail?: string };
 }
 export interface CompareColumn { method: string; cost: number; cost_std?: number; km: number; on_time_rate: number; unfinished: number; runtime_s: number;

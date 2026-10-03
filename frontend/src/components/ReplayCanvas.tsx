@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { pathFor, travelledPath, type Pos, type Trajectory } from "../lib/replay";
 
 export const PALETTE = ["#165dff", "#f77234", "#00b42a", "#722ed1", "#f5319d", "#14c9c9", "#d91ad9", "#ff7d00", "#3491fa", "#7bc616", "#f53f3f", "#86909c", "#0fc6c2", "#9fdb1d", "#b71de8", "#ffb400"];
@@ -12,6 +12,11 @@ interface Props {
 
 export function ReplayCanvas({ tr, t, pos, inventory, selected, showRoutes, showTrail, nodeState, pending, attribution, height = 520, zoomToTractors = false }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const [boxW, setBoxW] = useState(0);        // 容器宽度变化（旋转手机、拉伸窗口）时重绘
+  useEffect(() => {
+    const c = ref.current; if (!c || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => setBoxW(c.clientWidth)); ro.observe(c); return () => ro.disconnect();
+  }, []);
   const geo = tr.coord_system === "wgs84";
   const lat0 = tr.nodes.xy[0][1];
   const kx = geo ? Math.cos((lat0 * Math.PI) / 180) : 1;
@@ -122,7 +127,7 @@ export function ReplayCanvas({ tr, t, pos, inventory, selected, showRoutes, show
       g.restore();
     }
     if (attribution) { g.fillStyle = "rgba(29,33,41,0.55)"; g.font = "11px sans-serif"; g.fillText(attribution, 8, H - 8); }
-  }, [tr, t, pos, inventory, selected, showRoutes, showTrail, nodeState, pending, bounds, geo, kx, height, attribution, zoomToTractors]);
+  }, [tr, t, pos, inventory, selected, showRoutes, showTrail, nodeState, pending, bounds, geo, kx, height, attribution, zoomToTractors, boxW]);
 
   return <canvas ref={ref} style={{ width: "100%", height, borderRadius: 6, border: "1px solid var(--color-border-2)", display: "block" }} />;
 }

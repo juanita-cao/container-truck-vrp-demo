@@ -288,6 +288,11 @@ def solve(body: SolveIn):
     return {"run_id": run_id, "method": method}
 
 
+@app.get("/api/recorded-runs")
+def recorded_runs(dataset: Optional[str] = None):
+    return jobs.list_recorded(dataset)
+
+
 @app.get("/api/runs/{run_id}")
 def get_run(run_id: str, price: Optional[str] = None):
     job = jobs.get_job(run_id)
