@@ -59,3 +59,13 @@ def test_public_budget_cap():
     r = client.post("/api/solve", json={"dataset": "demo_sg", "instance": "sg_sun", "mode": "tomorrow",
                                          "budget_s": jobs.MAX_BUDGET + 1})
     assert r.status_code == 400
+
+
+@pytest.mark.parametrize("day", ["mon", "sat", "sun"])
+def test_outsourcing_costs_more_than_serving_a_job(day):
+    """单价表护栏：外包单价必须高于自己服务一单的平均成本，否则优化器会靠外包让总成本变低。"""
+    inst = datasets.load(f"sg_{day}", "demo_sg")
+    price = default_price_table("demo_sg")
+    res = solve_m2(inst, price, budget_s=3)
+    per_task = res["cost"]["total"] / len(inst.tasks)
+    assert price.outsource_per_task > per_task
