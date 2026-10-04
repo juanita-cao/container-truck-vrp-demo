@@ -10,12 +10,12 @@ import { useNarrow } from "../lib/useNarrow";
 import { usePrefs } from "../state/prefs";
 
 const { Sider, Header, Content, Footer } = Layout;
-const NAV = [
+const NAV = [      // 动画回放放第一个：登录后第一眼看到的就是它
+  { path: "/replay", key: "replay", icon: <IconPlayArrow /> },
   { path: "/input", key: "input", icon: <IconEdit /> },
   { path: "/week", key: "week", icon: <IconCalendar /> },
   { path: "/compare", key: "compare", icon: <IconSwap /> },
   { path: "/plan", key: "plan", icon: <IconThunderbolt /> },
-  { path: "/replay", key: "replay", icon: <IconPlayArrow /> },
   { path: "/price", key: "price", icon: <IconSettings /> },
   { path: "/guide", key: "guide", icon: <IconBook /> },
 ];
@@ -38,7 +38,7 @@ export function AppLayout() {
   }, [instances.data]);   // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!p.company) return <Navigate to="/login" replace />;
-  const selected = NAV.find((n) => loc.pathname.startsWith(n.path))?.path ?? "/input";
+  const selected = NAV.find((n) => loc.pathname.startsWith(n.path))?.path ?? "/replay";
   const label = (i: InstanceSummary) => (i.meta.scenario ? `★ ${i.meta.label ?? i.name}` : i.meta.day ? `${t(`days.${i.meta.day}`)} · ${i.name}` : i.name);
 
   return (

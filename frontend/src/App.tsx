@@ -40,7 +40,7 @@ export function App() {
             <Route path="/plan" element={<PlanPage />} />
             <Route path="/replay" element={<ReplayPage />} />
             <Route path="/price" element={<PricePage />} />
-            <Route path="*" element={<Navigate to="/input" replace />} />
+            <Route path="*" element={<Navigate to="/replay" replace />} />
           </Route>
         </Routes>
       </ConfigProvider>

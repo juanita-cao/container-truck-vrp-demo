@@ -10,7 +10,7 @@ export function LoginPage() {
   const p = usePrefs();
   const nav = useNavigate();
   const [company, setCompany] = useState("bluewave");
-  if (p.company) return <Navigate to="/input" replace />;
+  if (p.company) return <Navigate to="/replay" replace />;
   return (
     <div className="login">
       <Card style={{ width: 460 }}>
@@ -25,7 +25,7 @@ export function LoginPage() {
               <Radio value="bluewave">{t("login.bluewave")}</Radio>
             </Radio.Group>
           </div>
-          <Button type="primary" long onClick={() => { p.setCompany(company); nav("/input"); }}>{t("login.enter")}</Button>
+          <Button type="primary" long onClick={() => { p.setCompany(company); nav("/replay"); }}>{t("login.enter")}</Button>
           <Typography.Text type="secondary" style={{ fontSize: 12 }}>{t("login.note")}</Typography.Text>
           <Radio.Group type="button" size="small" value={p.lang} onChange={(v) => p.setLang(v)} options={[{ value: "en", label: "EN" }, { value: "zh", label: "中文" }]} />
         </Space>

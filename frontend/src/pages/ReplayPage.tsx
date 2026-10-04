@@ -48,6 +48,13 @@ export function ReplayPage() {
     : full), [full, focus]);
 
   useEffect(() => { setT(0); setPlaying(false); setFocus(null); }, [runId]);
+  // 首页即回放：第一次进入且没有指定运行时自动开始播放（系统开启"减少动画"时不自动播放）
+  const autoplayed = useRef(false);
+  useEffect(() => {
+    if (autoplayed.current || !full || sp.get("run")) return;
+    autoplayed.current = true;
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) setPlaying(true);
+  }, [full, sp]);
   useEffect(() => {
     if (!playing || !tr) return;
     const loop = (ts: number) => {

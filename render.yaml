@@ -4,7 +4,7 @@ services:
     name: drayage-api
     runtime: python
     region: singapore
-    plan: free
+    plan: starter      # 付费档（约 7 美元/月）：不休眠；免费档闲置会休眠、首次请求要等 30–60 秒
     buildCommand: pip install -r requirements-deploy.txt
     startCommand: uvicorn backend.api.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/health
