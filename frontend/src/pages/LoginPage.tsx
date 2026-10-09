@@ -31,7 +31,8 @@ export function LoginPage() {
         </Space>
       </Card>
       <div style={{ position: "fixed", bottom: 12, left: 0, right: 0, textAlign: "center", fontSize: 12, color: "var(--color-text-3)" }}>
-        © {COPYRIGHT_YEAR} {COPYRIGHT_OWNER}. {t("common.rights")}.
+        <div>{t("common.aiNotice")}</div>
+        <div>© {COPYRIGHT_YEAR} {COPYRIGHT_OWNER}. {t("common.rights")}.</div>
       </div>
     </div>
   );

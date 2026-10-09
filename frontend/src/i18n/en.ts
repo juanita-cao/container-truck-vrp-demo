@@ -5,7 +5,7 @@ export const en = {
     open: "Open", run: "Run", yes: "Yes", no: "No", none: "—", assumption: "Assumption", fictional: "Fictional",
     simulated: "Simulated (demo)", currencyNote: "Amounts use fictional unit prices", seconds: "s", minutes: "min", hours: "h",
     perDay: "per day", perYear: "per year", noData: "No data yet", dataBy: "Map data © OpenStreetMap contributors",
-    fictionalBanner: "Demo environment: the company, customers and prices are fictional.", rights: "All rights reserved",
+    fictionalBanner: "Demo environment: the company, customers and prices are fictional.", rights: "All rights reserved", aiNotice: "AI-generated content may contain errors. Please verify important information before acting.",
   },
   nav: { guide: "User guide", input: "Orders & fleet", week: "Week overview", compare: "Drop-and-pull value", plan: "Plan", replay: "Network replay", price: "Unit prices", collapse: "Collapse", menu: "Menu", expand: "Expand" },
   header: { instance: "Day / instance", dataset: "Dataset", language: "Language", account: "Account", switchCompany: "Switch company", logout: "Sign out" },

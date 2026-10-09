@@ -83,6 +83,7 @@ export function AppLayout() {
         <Content className="content"><Outlet /></Content>
         <Footer className="statusbar">
           <span><Tag size="small" color="orangered">{t("common.fictional")}</Tag> {t("common.fictionalBanner")} · {t("common.dataBy")}</span>
+          <span>{t("common.aiNotice")}</span>
           <span>© {COPYRIGHT_YEAR} {COPYRIGHT_OWNER}. {t("common.rights")}.</span>
         </Footer>
       </Layout>

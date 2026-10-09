@@ -9,7 +9,7 @@ export const zh: DeepStrings<Resource> = {
     open: "打开", run: "运行", yes: "是", no: "否", none: "—", assumption: "假设", fictional: "虚构",
     simulated: "模拟（演示）", currencyNote: "金额使用虚构单价", seconds: "秒", minutes: "分钟", hours: "小时",
     perDay: "每天", perYear: "每年", noData: "暂无数据", dataBy: "地图数据 © OpenStreetMap contributors",
-    fictionalBanner: "演示环境：公司、客户与价格均为虚构。", rights: "版权所有",
+    fictionalBanner: "演示环境：公司、客户与价格均为虚构。", rights: "版权所有", aiNotice: "AI 生成内容可能有误，请在采取行动前核实重要信息。",
   },
   nav: { guide: "用户指南", input: "订单与车队", week: "一周总览", compare: "甩挂价值对比", plan: "排程", replay: "网络回放", price: "单价表", collapse: "收起", menu: "菜单", expand: "展开" },
   header: { instance: "日期 / 算例", dataset: "数据集", language: "语言", account: "账号", switchCompany: "切换公司", logout: "退出" },
